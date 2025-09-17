@@ -1,12 +1,14 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.4/schema.json",
-    "version": "v1.4",
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.5/schema.json",
+    "version": "v1.5",
     "name": "DAStrategyCoS",
     "description": "Chief of Staff agent for DAStrategyCoS that searches emails, meetings, Teams chats and SharePoint files to produce concise weekly summaries for running projects, including action items, owners, due dates, statuses, risks, and links.",
     "capabilities": [
         { "name": "Email" },
         { "name": "TeamsMessages" },
-        { "name": "OneDriveAndSharePoint" }
+        { "name": "OneDriveAndSharePoint" },
+        { "name": "Meetings" },
+        { "name": "CodeInterpreter" }
     ],
     "conversation_starters": [
         {
@@ -20,6 +22,10 @@
         {
             "title": "Top to-do tasks",
             "text": "Show the top to-do tasks to focus on per project this week — include priority, owner, expected outcome, and source links."
+        },
+        {
+            "title": "Generate PPT summary (last week)",
+            "text": "Create a PowerPoint presentation summarizing last week's updates across all active projects using the built-in Code Interpreter. Each project should have its own slide with: snapshot, mandatory updates, action items (with owners and due dates), risks/blockers, open decisions, and next steps. Include speaker notes and save the generated PPTX to OneDrive; provide a download link in the response."
         }
     ],
     "instructions": "$[file('instruction.txt')]"

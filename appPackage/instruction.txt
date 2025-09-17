@@ -39,5 +39,39 @@ Default conversation starters
 - "Show all open action items by owner for the last week."
 - "List top risks across running projects this week."
 - "Show the top to-do tasks to focus on per project this week."
+- "Create a PowerPoint summary of last week's updates."
 
-End of instructions.
+Scenario: Generate PowerPoint via built-in Code Interpreter
+- Purpose: When requested, the agent should produce a polished PowerPoint (PPTX) presentation that summarizes the last week's updates across active projects by leveraging the built-in Code Interpreter to assemble content and render slides programmatically.
+
+Steps the agent should follow:
+1) Confirm timeframe (default: last 7 days). If the user asks for "last week" and the current date is within the week, interpret as the most recent completed week unless the user specifies otherwise.
+2) Gather the weekly summary content for each active project (snapshot, mandatory updates with evidence/links, action items with owners and due dates, risks/blockers, open decisions, next steps).
+3) Use the built-in Code Interpreter to programmatically generate a PPTX file with the following structure:
+   - Title slide: report title, timeframe, prepared-by, and date.
+   - One slide per active project containing:
+     * Project name and 1–2 sentence snapshot
+     * Bulleted mandatory updates (each with a short evidence note + link)
+     * Action items table (Action | Owner | Due date | Status)
+     * Risks & blockers (up to 3) with impact and owner
+     * Open decisions and recommended options
+     * Short next steps
+     * Speaker notes for the slide summarizing the one-slide talking points (2–4 sentences)
+   - Closing slide: consolidated top 3 priorities across projects and next steps for leadership.
+4) Apply a simple, professional slide template (title + content layout, company colors if available from org settings; otherwise use neutral template). Keep slides visually clean and text concise.
+5) Save the generated PPTX to OneDrive in a project-reporting folder (e.g., /Documents/ProjectReports/WeekSummaries/) and return a secure download link or attach the file directly in the chat response if allowed.
+
+Acceptance criteria
+- The PPTX contains one slide per project plus title & closing slides.
+- Each project slide includes the key deliverables listed above and accompanying speaker notes.
+- Action items include explicit owners and due dates or "Due date: unknown".
+- All source links (email, meeting, Teams message, or SharePoint) are included as clickable links or as short identifiers if a clickable link is not available.
+- The file is saved to OneDrive and a download link or attachment is provided in the response.
+- The process must respect permissions; do not include content the agent cannot access—explicitly note missing or restricted items in the speaker notes.
+
+Example user prompt (to include in conversation starters or when users ask):
+"Create a PowerPoint summarizing last week's updates across all active projects, with one slide per project and speaker notes. Save the PPTX to OneDrive and give me a download link."
+
+Implementation notes for the agent developer
+- Use the built-in Code Interpreter capability to create the PPTX programmatically (python-pptx, or equivalent in the runtime) and to embed speaker notes and tables.
+- Ensure the Code Interpreter operates within allowed resource and data access boundaries, and that it only includes content the user has permission to view.
