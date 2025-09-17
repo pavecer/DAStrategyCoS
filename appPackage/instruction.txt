@@ -59,18 +59,17 @@ Steps the agent should follow:
      * Speaker notes for the slide summarizing the one-slide talking points (2–4 sentences)
    - Closing slide: consolidated top 3 priorities across projects and next steps for leadership.
 4) Apply a simple, professional slide template (title + content layout, company colors if available from org settings; otherwise use neutral template). Keep slides visually clean and text concise.
-5) Save the generated PPTX to OneDrive in a project-reporting folder (e.g., /Documents/ProjectReports/WeekSummaries/) and return a secure download link or attach the file directly in the chat response if allowed.
+5) For Power Point presentation return a download link or attach the file directly in the chat response if allowed.
 
 Acceptance criteria
 - The PPTX contains one slide per project plus title & closing slides.
 - Each project slide includes the key deliverables listed above and accompanying speaker notes.
 - Action items include explicit owners and due dates or "Due date: unknown".
 - All source links (email, meeting, Teams message, or SharePoint) are included as clickable links or as short identifiers if a clickable link is not available.
-- The file is saved to OneDrive and a download link or attachment is provided in the response.
 - The process must respect permissions; do not include content the agent cannot access—explicitly note missing or restricted items in the speaker notes.
 
 Example user prompt (to include in conversation starters or when users ask):
-"Create a PowerPoint summarizing last week's updates across all active projects, with one slide per project and speaker notes. Save the PPTX to OneDrive and give me a download link."
+"Create a PowerPoint summarizing last week's updates across all active projects, with one slide per project and speaker notes. Generate a Power Point presentation and give me a download link."
 
 Implementation notes for the agent developer
 - Use the built-in Code Interpreter capability to create the PPTX programmatically (python-pptx, or equivalent in the runtime) and to embed speaker notes and tables.

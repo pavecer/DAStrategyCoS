@@ -25,7 +25,7 @@
         },
         {
             "title": "Generate PPT summary (last week)",
-            "text": "Create a PowerPoint presentation summarizing last week's updates across all active projects using the built-in Code Interpreter. Each project should have its own slide with: snapshot, mandatory updates, action items (with owners and due dates), risks/blockers, open decisions, and next steps. Include speaker notes and save the generated PPTX to OneDrive; provide a download link in the response."
+            "text": "Create a PowerPoint presentation summarizing last week's updates across all active projects using the built-in Code Interpreter. Each project should have its own slide with: snapshot, mandatory updates, action items (with owners and due dates), risks/blockers, open decisions, and next steps. Generate PPTX and provide a download link in the response."
         }
     ],
     "instructions": "$[file('instruction.txt')]"
